@@ -741,6 +741,90 @@ Questions? [Your support channel here]
         )}
       </section>
 
+      {/* Pricing */}
+      <section className="border-t border-zinc-800 py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-2xl font-bold mb-8 text-center">Upgrade for More Power</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Free */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+              <div className="text-sm text-zinc-500 mb-2">Free</div>
+              <div className="text-3xl font-bold mb-4">$0</div>
+              <ul className="space-y-2 text-sm text-zinc-400 mb-6">
+                <li>Basic CLAUDE.md</li>
+                <li>Honor Code framework</li>
+                <li>Directory structure</li>
+              </ul>
+              <button
+                onClick={() => setStep(1)}
+                className="w-full px-4 py-2 bg-zinc-800 rounded-lg text-sm"
+              >
+                Current Tier
+              </button>
+            </div>
+
+            {/* Pro */}
+            <div className="bg-zinc-900 border-2 border-white rounded-lg p-6 relative">
+              <div className="absolute -top-3 left-4 px-2 bg-white text-black text-xs font-bold rounded">
+                POPULAR
+              </div>
+              <div className="text-sm text-zinc-500 mb-2">Pro</div>
+              <div className="text-3xl font-bold mb-4">$79</div>
+              <ul className="space-y-2 text-sm text-zinc-400 mb-6">
+                <li>Industry-specific templates</li>
+                <li>Schema documentation</li>
+                <li>Advanced protocols</li>
+                <li>Priority support</li>
+              </ul>
+              <button
+                onClick={async () => {
+                  const res = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier: 'pro' }),
+                  });
+                  const data = await res.json();
+                  if (data.checkoutUrl) {
+                    window.location.href = data.checkoutUrl;
+                  }
+                }}
+                className="w-full px-4 py-2 bg-white text-black font-medium rounded-lg text-sm"
+              >
+                Get Pro
+              </button>
+            </div>
+
+            {/* Team */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+              <div className="text-sm text-zinc-500 mb-2">Team</div>
+              <div className="text-3xl font-bold mb-4">$199</div>
+              <ul className="space-y-2 text-sm text-zinc-400 mb-6">
+                <li>Everything in Pro</li>
+                <li>Multi-user configs</li>
+                <li>Role-based access</li>
+                <li>Team onboarding</li>
+              </ul>
+              <button
+                onClick={async () => {
+                  const res = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier: 'team' }),
+                  });
+                  const data = await res.json();
+                  if (data.checkoutUrl) {
+                    window.location.href = data.checkoutUrl;
+                  }
+                }}
+                className="w-full px-4 py-2 bg-zinc-800 rounded-lg text-sm"
+              >
+                Get Team
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-zinc-800 py-8">
         <div className="max-w-4xl mx-auto px-6 text-center text-sm text-zinc-600">
